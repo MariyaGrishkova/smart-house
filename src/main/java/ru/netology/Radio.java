@@ -3,15 +3,21 @@ package ru.netology;
 public class Radio {
 
     private int currentVolume = 5;
-    int maxVolume = 10;
-    int minVolume = 0;
+    private int maxVolume = 100;
+    private int  minVolume = 0;
     private int currentRadioStation = 5;
-    int maxRadioStation = 9;
-    int minRadioStation = 0;
+    private int maxRadioStation = 10;
+    private int minRadioStation = 0;
 
 
-    public int changeTheStationByRemoteButton(int intendedStation) {
-        if (intendedStation <= 9 && intendedStation >= 0) {
+
+    public void setMaxRadioStation(int maxRadioStation) {
+        this.maxRadioStation = maxRadioStation;
+    }
+
+
+    public int changeTheStationByRemoteControl(int intendedStation) {
+        if ( intendedStation >= 0) {
             currentRadioStation = intendedStation;
         }
         return currentRadioStation;
@@ -20,7 +26,7 @@ public class Radio {
 
     public void changeTheStationByNextButton() {
         if (currentRadioStation == maxRadioStation) {
-            currentRadioStation = 0;
+            currentRadioStation = minRadioStation;
         } else {
             currentRadioStation += 1;
         }
@@ -28,20 +34,19 @@ public class Radio {
 
     public void changeTheStationByPrevButton() {
         if (currentRadioStation == minRadioStation) {
-            currentRadioStation = 9;
+            currentRadioStation = maxRadioStation;
         } else {
             currentRadioStation -= 1;
         }
     }
 
 
-    public int increaseVolume() {
+    public void increaseVolume() {
         if (currentVolume == maxVolume) {
-            return currentVolume;
+            return;
         } else {
             currentVolume += 1;
         }
-        return 0;
     }
 
     public void decreaseVolume() {
@@ -69,4 +74,27 @@ public class Radio {
     public void setCurrentRadioStation(int currentRadioStation) {
         this.currentRadioStation = currentRadioStation;
     }
+
+    public int getMaxRadioStation() {
+        return maxRadioStation;
+    }
+
+    public Radio() {
+    }
+
+    public Radio(int currentRadioStation, int maxRadioStation) {
+        this.currentRadioStation = currentRadioStation;
+        this.maxRadioStation = maxRadioStation;
+    }
+
+    public Radio(int maxRadioStation) {
+        this.maxRadioStation = maxRadioStation;
+    }
+
+    public Radio(int currentVolume, int maxVolume, int minVolume) {
+        this.currentVolume = currentVolume;
+        this.maxVolume = maxVolume;
+        this.minVolume = minVolume;
+    }
+
 }
